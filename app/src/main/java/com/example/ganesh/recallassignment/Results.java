@@ -41,6 +41,7 @@ public class Results extends Activity{
     String category;
     String modelname;
     String recallnumber;
+    ArrayList tempmodellist = new ArrayList();
     ArrayList modellist = new ArrayList();
     ArrayList categorylist= new ArrayList();
     ArrayList yearlist= new ArrayList();
@@ -119,6 +120,7 @@ public class Results extends Activity{
                     model = eElement.getElementsByTagName("FormattedValue").item(0).getTextContent();
 
                     modellist.add(model);
+                    tempmodellist=removeDuplicates(modellist);
                 }
 
                 if (attrValue.equals("DATEYEARCD1")) {
@@ -188,14 +190,14 @@ public class Results extends Activity{
             }
 
         }
-         if(modellist.contains(model5)){
-           int r = modellist.size();
+         if(tempmodellist.contains(model5)){
+           int r = tempmodellist.size();
 
             for (int e = 0; e < r; e++) {
 
-                if(modellist.get(e).equals(model5) ) {
+                if(tempmodellist.get(e).equals(model5) ) {
 
-                     a += (String)  modellist.get(e);
+                     a += (String)  tempmodellist.get(e);
                   y += (String)  yearlist.get(e);
                     b += (String)  systemtypelist.get(e);
                     c += (String)  unitAffectlist.get(e);
